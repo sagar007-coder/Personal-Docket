@@ -1,0 +1,61 @@
+<html>
+    <head>
+        <title>
+            <%= locals.title%>
+        </title>
+        <script src="https://kit.fontawesome.com/faea743eff.js" crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="/css/home.css">
+    </head>
+    <body>
+        <h1 id="heading">TO DO LIST</h1>
+        <div class="ctn1">
+    <div class="form">
+        <form action="/add-todo" method="POST">
+            <label for="Description">Description</label><br>
+            <textarea name="description" id="description" cols="30" rows="5" placeholder="What do you want to do?"></textarea>
+            <hr>
+            <div class="row">
+                <div class="col">
+                    <label for="Category">Category</label>
+                    <br>
+                    <select name="category" id="Category">
+                        <option value="">Choose Category</option>
+                        <option value="Personal">Personal</option>
+                        <option value="School">School</option>
+                        <option value="Home">Home</option>
+                        <option value="Other">Other</option>
+                    </select>
+            </div>
+            <div class="verticalline"></div>
+                <div class="col">
+                    <label for="Due Date">Due Date</label><br>
+            <input type="date" name="duedate" placeholder="Due Date" required>
+        </div>
+            </div>
+        <button id="btn" type="submit">Add Task</button>
+        <hr>
+    </form>
+   
+        <div>
+            <ul>
+                   
+                <% for (let i of todo_list) { %> 
+                   <div class="todo">
+                        <li>
+                            <p><%= i.description %></p>
+                            
+                        </li>
+                    </div>
+                    <div class="delete-button">
+                      <span class="del">  <a href="/delete-task/?id=<%= i._id %>"><i class="fas fa-archive"></i></a></span>
+                            <span class="cate"><%= i.category %></span>
+                            <span class="due"><i class='fas'>&#xf073;</i>&nbsp;<%= i.duedate%></span>
+    
+                    </div>
+                <% } %>
+            </ul>
+        </div>
+    </div>
+        
+    </body>
+</html>
